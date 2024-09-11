@@ -28,49 +28,53 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <cctype>
 
-bool optimalSolution(std::string testString) {
+bool isUnique_optimal(std::string testString) {
  
     std::sort(testString.begin(), testString.end());
     
-    bool hasDuplicate = false;
+    bool isUnique = true;
     
     
   
     for (size_t i = 1; i < testString.length(); ++i) {
         if (testString[i - 1] == testString[i]) {
-            hasDuplicate = true;
+            isUnique = false;
             break; 
         }
     }
     
-    return hasDuplicate;
+    return isUnique;
 }
 
-bool bruteForceSolution(const std::string& testString) {
-    bool hasDuplicate = false;
+bool isUnique_brute_force(const std::string& testString) {
+    bool isUnique = true;
     for (size_t i = 0; i < testString.length(); ++i) {
         for (size_t j = i + 1; j < testString.length(); ++j) {
             if (testString[i] == testString[j]) {
-                hasDuplicate = true;
+                isUnique = false;
                 break; 
             }
         }
-        if (hasDuplicate) {
+        if (!isUnique) {
             break; 
         }
     }
-    return hasDuplicate;
+    return isUnique;
 }
 
 int main() {
-    std::string testString = "Vhla";
-   
+    std::string testString = "Vohla";
+    
+    for(auto& s : testString){
+        s = tolower(s);
+    }
     // Brute Force Method
-    std::cout << "Brute force solution result: " << (bruteForceSolution(testString) ? "True" : "False") << std::endl;
+    std::cout << "Brute force solution result: " << (isUnique_brute_force(testString) ? "True" : "False") << std::endl;
 
     // Optimal method Using Sorting
-    std::cout << "Optimal solution result: " << (optimalSolution(testString) ? "True" : "False") << std::endl;
+    std::cout << "Optimal solution result: " << (isUnique_optimal(testString) ? "True" : "False") << std::endl;
     
     return 0;
 }
