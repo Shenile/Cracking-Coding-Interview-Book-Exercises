@@ -28,7 +28,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <cctype>
+#include <conio.h>
 
 bool isUnique_optimal(std::string testString) {
  
@@ -65,8 +65,8 @@ bool isUnique_brute_force(const std::string& testString) {
 }
 
 int main() {
-    std::string testString = "Vohla";
-    
+    std::string testString;
+    std::cin >> testString;
     for(auto& s : testString){
         s = tolower(s);
     }
@@ -76,5 +76,6 @@ int main() {
     // Optimal method Using Sorting
     std::cout << "Optimal solution result: " << (isUnique_optimal(testString) ? "True" : "False") << std::endl;
     
+    _getch();
     return 0;
 }

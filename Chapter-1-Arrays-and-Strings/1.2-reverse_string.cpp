@@ -19,6 +19,7 @@
 #include <cstring>
 #include <string>
 #include <algorithm>
+#include <conio.h>
 
 
 void reverse(char* str){
@@ -41,6 +42,8 @@ int main() {
     for(auto s : str){
         std::cout << s << " ";
     }
+
+    _getch();
     return 0;
 
 }
