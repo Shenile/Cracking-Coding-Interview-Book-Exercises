@@ -77,7 +77,10 @@ int main() {
     std::cout << "Array after rotation by 90 degree :" << std::endl;
     print2dArray(arr, rows, cols);
     
-
+    for (int i = 0; i < rows; ++i) {
+        delete[] arr[i];
+    }
+    delete[] arr;
     
 
     return 0;
