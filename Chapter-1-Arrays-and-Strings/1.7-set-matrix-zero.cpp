@@ -1,20 +1,22 @@
 /*
    Source: Cracking the Coding Interview by Gayle Laakmann McDowell,
-   Chapter Name: 
-   Problem Number: 
+   Chapter Name: Arrays and strings
+   Problem Number: 1.7 
 
    Problem Statement:
-   
+
+   Write an algorithm such that if an element in an MxN matrix is 0, its entire row
+   and column are set to 0.
 
    Solutions Analysis:
 
-   Brute Force Solution:
-      Time Complexity: 
-      Space Complexity: 
+   Better Solution:
+      Time Complexity: O(rows*cols)
+      Space Complexity: O(cols)
 
    Optimal Solution:
-      Time Complexity: 
-      Space Complexity: ,
+      Time Complexity: O(rows*cols)
+      Space Complexity: O(rows+cols),
 */
 
 #include <iostream>
@@ -39,7 +41,7 @@ void setMatrixZero_betterSolution(int** arr, int rows, int cols){
         map[i] = false;
      }
      
-     bool isColumnZero = false;
+   
      for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             
@@ -50,6 +52,7 @@ void setMatrixZero_betterSolution(int** arr, int rows, int cols){
                   {
                     arr[i][j] = 0;
                   }
+                  
                   map[j] = true; 
                 }
             }
@@ -57,6 +60,46 @@ void setMatrixZero_betterSolution(int** arr, int rows, int cols){
      }
 }
 
+void setMatrixZero_optimal(int** arr, int rows, int cols){
+    bool* rowZeros = new bool[rows]{false};
+    bool* colZeros = new bool[cols]{false};
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            
+            if(arr[i][j] == 0){
+               rowZeros[i] = true;
+               colZeros[j] = true;
+            }
+            
+        }
+    }
+
+    for (int i = 0; i < rows; ++i) {
+
+        if(rowZeros[i] ){
+           for (int j = 0; j < cols; ++j) {
+          
+             arr[i][j] = 0;
+           }
+        }
+        
+    }
+
+    for (int i = 0; i < cols; ++i) {
+
+        if(colZeros[i] ){
+           for (int j = 0; j < rows; ++j) {
+             // Your code here
+             arr[j][i] = 0;
+           }
+        }
+        
+    }
+
+    delete[] rowZeros;
+    delete[] colZeros;
+}
 int main() {
     int rows = 3, cols =3;
 
@@ -73,10 +116,11 @@ int main() {
         }
     }
 
-    arr[2][2] = 0;
+    arr[1][1] = 0;
     
     printMultiDimensionalArray(arr, rows, cols);
-    setMatrixZero_betterSolution(arr, rows, cols);
+    std::cout << "-----------------------------------" << std::endl;
+    setMatrixZero_optimal(arr, rows, cols);
     printMultiDimensionalArray(arr, rows, cols);
    
 
