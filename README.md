@@ -51,10 +51,4 @@ This repository contains solutions to problems from the book *Cracking the Codin
 
 - [Cracking the Coding Interview, 6th Edition](https://www.crackingthecodinginterview.com)
 
-## Contributing
 
-If you'd like to contribute or improve the solutions, feel free to open a pull request. Contributions are always welcome!
-
-## License
-
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
