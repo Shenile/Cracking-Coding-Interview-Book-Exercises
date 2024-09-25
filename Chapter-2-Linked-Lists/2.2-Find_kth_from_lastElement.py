@@ -1,5 +1,6 @@
 from Singly_Linked_List import LinkedList
 
+# list intialization ..
 list = LinkedList()
 for i in range(10):
     list.insert_at_end(i)
